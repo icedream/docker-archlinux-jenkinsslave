@@ -3,7 +3,10 @@
 [ "$1" = "" ] && (echo "You need to define a URL to authorized keys." && exit 1)
 
 # this will regenerate server keys
-dpkg-reconfigure openssh-server
+ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa
+ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
+ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
 
 # this will properly register the need authorized key
 echo "Downloading authorized key from $1..."
